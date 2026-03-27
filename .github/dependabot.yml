@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pnpm"
+  - package-ecosystem: "npm"
     directory: "/"                # Ubicación de package.json y pnpm-lock.yaml
     schedule:
       interval: "weekly"          # Cambia a "daily" si quieres actualizaciones más frecuentes
