@@ -1,0 +1,123 @@
+@use 'breakpoints' as bp;
+
+:host {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  display: block;
+}
+
+.nav {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  height: var(--nav-height);
+}
+
+.brand {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  span {
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+}
+
+.links {
+  display: none;
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+
+  a {
+    padding: 0.2rem 0.55rem;
+    color: var(--text-muted);
+    transition: color var(--duration);
+
+    &:hover {
+      color: var(--text);
+    }
+
+    // Reverse video, like a selected line in a terminal.
+    &[aria-current] {
+      background: var(--text);
+      color: var(--bg);
+    }
+  }
+}
+
+.status {
+  margin-left: auto;
+}
+
+.menu-button {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-right: -0.6rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--text);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+
+  ul {
+    display: grid;
+    padding-block: var(--space-2) var(--space-5);
+  }
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+  }
+
+  span {
+    color: var(--text-faint);
+  }
+}
+
+.mobile-lang {
+  padding-top: var(--space-4);
+}
+
+// On small screens the switch lives inside the menu; the bar has no room for it.
+.lang {
+  display: none;
+}
+
+@include bp.up(nav) {
+  .links {
+    display: flex;
+  }
+
+  .status {
+    margin-left: var(--space-4);
+  }
+
+  .lang {
+    display: block;
+  }
+
+  .menu-button,
+  .mobile-menu {
+    display: none;
+  }
+}

@@ -1,0 +1,71 @@
+@use 'breakpoints' as bp;
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.synced {
+  margin-top: var(--space-2);
+
+  time {
+    white-space: nowrap;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-faint);
+
+  button {
+    min-height: 2rem;
+    padding: 0.15rem 0.5rem;
+    border: 0;
+    background: none;
+    color: var(--text-muted);
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--text);
+    }
+
+    &[aria-pressed='true'] {
+      background: var(--text);
+      color: var(--bg);
+    }
+  }
+
+  sup {
+    margin-left: 0.15em;
+    font-size: 0.7em;
+    opacity: 0.7;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+
+  @include bp.up(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include bp.up(xl) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.inline-link {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

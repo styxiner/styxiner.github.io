@@ -1,0 +1,276 @@
+@use 'breakpoints' as bp;
+
+// --c is the language colour (or the accent for featured cards), set on the host.
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--c);
+  border-radius: var(--radius);
+  transition:
+    background-color var(--duration),
+    border-color var(--duration);
+}
+
+:host(:hover) {
+  background: var(--surface);
+  border-color: var(--line-strong);
+  border-top-color: var(--c);
+}
+
+:host(:has(.link:focus-visible)) {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+}
+
+:host(.featured) {
+  // The tree output sets the height; a fixed ratio would leave a tall empty block.
+  .media:has(.tree) {
+    aspect-ratio: auto;
+  }
+
+  // The featured card has room for its whole description.
+  .desc {
+    -webkit-line-clamp: unset;
+  }
+
+  @include bp.up(sm) {
+    grid-column: 1 / -1;
+  }
+
+  @include bp.up(xl) {
+    grid-column: span 2;
+    flex-direction: row;
+
+    .media {
+      width: 46%;
+      flex: none;
+      aspect-ratio: auto;
+      border-bottom: 0;
+      border-right: 1px solid var(--line);
+    }
+  }
+}
+
+.media {
+  aspect-ratio: 16 / 7;
+  max-width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// What the card shows when there is no image: the repo as a shell would print it.
+.fallback {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--text-faint);
+}
+
+.cmd {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  b {
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 0.6em;
+    height: 1.1em;
+    margin-left: 0.2em;
+    vertical-align: -0.2em;
+    background: var(--text-muted);
+    opacity: 0;
+  }
+}
+
+:host(:hover) .cmd::after {
+  opacity: 1;
+  animation: blink 1.1s steps(1) infinite;
+}
+
+.ext {
+  align-self: flex-end;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--c);
+}
+
+.tree {
+  flex: 1;
+  overflow-x: auto;
+  font-size: 0.75rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+
+  p {
+    white-space: pre;
+  }
+
+  b {
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  span {
+    color: var(--text-faint);
+  }
+
+  .count {
+    margin-top: var(--space-3);
+    color: var(--text-faint);
+  }
+}
+
+.body {
+  display: grid;
+  flex: 1;
+  align-content: start;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4) var(--space-4) var(--space-5);
+}
+
+.flag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: pre;
+
+  b {
+    color: var(--accent);
+  }
+}
+
+.top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.title {
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+// The title link stretches over the whole card so the card is one click target.
+.link {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+:host(:hover) .title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.arrow {
+  margin-top: 0.2rem;
+  font-size: 1.05rem;
+  color: var(--text-faint);
+}
+
+:host(:hover) .arrow {
+  color: var(--text);
+}
+
+.desc {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+
+  &.empty {
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+}
+
+.members {
+  display: grid;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block: 0.35rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-muted);
+  }
+
+  span:last-child {
+    color: var(--text-faint);
+  }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--text-faint);
+}
+
+.lang {
+  color: var(--text-muted);
+
+  &::before {
+    content: '■ ';
+    color: var(--c);
+  }
+}
+
+// Sits above the stretched title link so it stays clickable on its own.
+.live {
+  position: relative;
+  z-index: 1;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: var(--text);
+  }
+}

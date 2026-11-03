@@ -1,0 +1,65 @@
+:host {
+  --tone: var(--accent);
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+:host(.warn) {
+  --tone: var(--warn);
+}
+
+:host(.danger) {
+  --tone: var(--danger);
+}
+
+.tag {
+  font-weight: 700;
+  white-space: pre;
+  color: var(--text-faint);
+}
+
+b {
+  font-weight: 700;
+  color: var(--tone);
+}
+
+.label {
+  color: var(--text-muted);
+}
+
+.star {
+  display: inline-block;
+  width: 4ch;
+
+  &::before {
+    content: '*   ';
+    white-space: pre;
+    color: var(--warn);
+    animation: scan 1.2s steps(1) infinite;
+  }
+}
+
+@keyframes scan {
+  0% {
+    content: '*   ';
+  }
+  16% {
+    content: ' *  ';
+  }
+  33% {
+    content: '  * ';
+  }
+  50% {
+    content: '   *';
+  }
+  66% {
+    content: '  * ';
+  }
+  83% {
+    content: ' *  ';
+  }
+}

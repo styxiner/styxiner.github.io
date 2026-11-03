@@ -1,0 +1,63 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+  padding-block: var(--space-8);
+  border-bottom: 1px solid var(--line);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-4) var(--space-6);
+
+  @include bp.up(lg) {
+    grid-template-columns: var(--margin-col) minmax(0, 1fr);
+  }
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  small {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-faint);
+  }
+
+  @include bp.up(lg) {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-6));
+    align-self: start;
+    padding-top: 0.6rem;
+  }
+}
+
+.body {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+// Sections settle in as they scroll into view. Pure CSS: browsers without scroll-driven
+// animations simply show the section, and it never starts fully transparent.
+@supports (animation-timeline: view()) {
+  .body {
+    animation: settle linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  @keyframes settle {
+    from {
+      opacity: 0.35;
+      transform: translateY(8px);
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@use 'breakpoints' as bp;
+
+.list {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--line);
+
+  @include bp.up(sm) {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    align-items: baseline;
+  }
+}
+
+h3 {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+
+  i {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--text-faint);
+  }
+
+  &.empty {
+    border-style: dashed;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+}

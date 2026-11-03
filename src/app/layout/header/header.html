@@ -1,0 +1,45 @@
+<header class="nav">
+  <div class="wrap bar">
+    <a class="brand" href="#top" (click)="closeMenu()"><span>~/</span>styxiner</a>
+
+    <nav class="links" [attr.aria-label]="t().nav.sections">
+      @for (id of sectionIds; track id) {
+        <a [href]="'#' + id" [attr.aria-current]="activeId() === id ? 'location' : null">
+          {{ t().nav.items[id].label }}
+        </a>
+      }
+    </nav>
+
+    <app-status-tag class="status">{{ t().nav.online }}</app-status-tag>
+    <app-lang-switch class="lang" />
+
+    <button
+      class="menu-button"
+      type="button"
+      aria-controls="mobile-menu"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? t().nav.closeMenu : t().nav.openMenu"
+      (click)="toggleMenu()"
+    >
+      <app-icon [name]="menuOpen() ? 'x' : 'menu'" />
+    </button>
+  </div>
+
+  <nav
+    class="mobile-menu"
+    id="mobile-menu"
+    [attr.aria-label]="t().nav.sections"
+    [hidden]="!menuOpen()"
+  >
+    <ul class="wrap">
+      @for (id of sectionIds; track id) {
+        <li>
+          <a [href]="'#' + id" (click)="closeMenu()">
+            {{ t().nav.items[id].label }} <span>{{ t().nav.items[id].hint }}</span>
+          </a>
+        </li>
+      }
+      <li class="mobile-lang"><app-lang-switch /></li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,84 @@
+<div class="media">
+  @if (showImage()) {
+    <img
+      [src]="project().imageUrl"
+      [alt]="t().projects.preview + ' ' + project().title"
+      loading="lazy"
+      decoding="async"
+      width="1280"
+      height="640"
+      (error)="onImageError()"
+    />
+  } @else if (members().length) {
+    <div class="fallback" aria-hidden="true">
+      <span class="cmd"
+        >$ <b>tree -L 1 {{ project().slug }}/</b></span
+      >
+      <!-- Lines are white-space: pre, so no whitespace around the text. -->
+      <!-- prettier-ignore -->
+      <div class="tree">
+        <p><b>{{ project().slug }}/</b></p>
+        @for (line of treeLines(); track line.text) {
+          <p>{{ line.text }}<span>{{ line.language }}</span></p>
+        }
+        <p class="count">{{ members().length }} {{ t().projects.repositories }}</p>
+      </div>
+    </div>
+  } @else {
+    <div class="fallback" aria-hidden="true">
+      <span class="cmd"
+        >$ <b>ls -ld {{ project().slug }}/</b></span
+      >
+      <span class="ext">{{ extension() }}</span>
+    </div>
+  }
+</div>
+
+<div class="body">
+  @if (project().featured) {
+    <p class="flag"><b>[ PIN ]</b> {{ t().projects.featured }}</p>
+  }
+
+  <div class="top">
+    <h3 class="title">
+      <a class="link" [href]="project().repoUrl" rel="noopener" target="_blank">{{
+        project().title
+      }}</a>
+    </h3>
+    <app-icon class="arrow" name="arrow-up-right" />
+  </div>
+
+  @if (description(); as description) {
+    <p class="desc">{{ description }}</p>
+  } @else {
+    <p class="desc empty">{{ t().projects.noDescription }}</p>
+  }
+
+  <!-- Without an image the tree above already lists the repos. -->
+  @if (members().length && showImage()) {
+    <ul class="members">
+      @for (member of members(); track member.name) {
+        <li>
+          <span>{{ member.shortName }}</span
+          ><span>{{ member.language?.toLowerCase() ?? '—' }}</span>
+        </li>
+      }
+    </ul>
+  }
+
+  <div class="meta">
+    @if (project().language) {
+      <span class="lang">{{ project().language }}</span>
+    }
+    @for (topic of project().topics | slice: 0 : 3; track topic) {
+      <span>{{ topic }}</span>
+    }
+    @if (project().archived) {
+      <span>{{ t().projects.archived }}</span>
+    }
+    <time [attr.datetime]="project().updatedAt">{{ project().updatedAt | slice: 0 : 10 }}</time>
+    @if (project().liveUrl; as liveUrl) {
+      <a class="live" [href]="liveUrl" rel="noopener" target="_blank">{{ t().projects.demo }} ↗</a>
+    }
+  </div>
+</div>

@@ -1,0 +1,33 @@
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+
+.prefix {
+  margin-right: 0.25rem;
+  color: var(--text-faint);
+}
+
+button {
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0 0.4rem;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  cursor: pointer;
+  transition: color var(--duration);
+
+  &:hover {
+    color: var(--text);
+  }
+
+  &[aria-pressed='true'] {
+    background: var(--text);
+    color: var(--bg);
+  }
+}
