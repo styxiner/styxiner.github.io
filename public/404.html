@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>404 · styxiner</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      display: grid;
+      place-content: center;
+      padding: 16px;
+      background: #0c0e11;
+      color: #dfe3e8;
+      font: 0.9375rem/1.8 ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+    }
+    p { margin: 0; overflow-wrap: anywhere; }
+    .muted { color: #8e97a3; }
+    .code { color: #ef8a80; font-weight: 700; }
+    a { color: #5fd4e4; }
+    a:focus-visible { outline: 1px solid #5fd4e4; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="muted">$ man <span id="page">página</span></p>
+    <p>No manual entry for <span id="name">esta página</span></p>
+    <p class="muted"><span class="code">[FAILED]</span> 404</p>
+    <p>&nbsp;</p>
+    <p class="muted">$ <a href="/">cd ~</a></p>
+  </main>
+  <script>
+    const name = decodeURIComponent(location.pathname.replace(/^\/+|\/+$/g, '')) || 'esta página';
+    document.getElementById('page').textContent = name;
+    document.getElementById('name').textContent = name;
+  </script>
+</body>
+</html>

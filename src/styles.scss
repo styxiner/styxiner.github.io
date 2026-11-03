@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+// Global entry point. Tokens and base rules live in src/styles/ so components can
+// `@use 'breakpoints'` without pulling global CSS into every component bundle.
+@use 'tokens';
+@use 'base';

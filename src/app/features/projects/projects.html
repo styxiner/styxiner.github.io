@@ -1,0 +1,50 @@
+<app-man-section sectionId="projects" [label]="t().projects.label" command="ls ~/projects">
+  <div class="head">
+    <div>
+      <h2 class="section-title" id="projects-title">{{ t().projects.title }}</h2>
+      @if (service.generatedAt(); as generatedAt) {
+        <p class="note synced">
+          {{ t().projects.synced }} ·
+          <time [attr.datetime]="generatedAt">{{ generatedAt | slice: 0 : 10 }}</time>
+        </p>
+      }
+    </div>
+
+    @if (service.languages().length > 1) {
+      <div class="filters" role="group" [attr.aria-label]="t().projects.filter">
+        <span aria-hidden="true">--lang=</span>
+        <button type="button" [attr.aria-pressed]="language() === null" (click)="select(null)">
+          all<sup>{{ service.projects().length }}</sup>
+        </button>
+        @for (option of service.languages(); track option.name) {
+          <button
+            type="button"
+            [attr.aria-pressed]="language() === option.name"
+            (click)="select(option.name)"
+          >
+            {{ option.name.toLowerCase() }}<sup>{{ option.count }}</sup>
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  @if (service.isLoading()) {
+    <app-status-tag [loading]="true" role="status">{{ t().projects.loading }}</app-status-tag>
+  } @else if (service.hasError()) {
+    <app-status-tag code="FAILED" tone="danger" role="alert">
+      {{ t().projects.error }}
+      <a class="inline-link" [href]="githubReposUrl" rel="noopener" target="_blank"
+        >github.com/styxiner</a
+      >.
+    </app-status-tag>
+  } @else {
+    <div class="grid" role="list">
+      @for (project of visible(); track project.slug) {
+        <app-project-card [project]="project" />
+      } @empty {
+        <p class="note">{{ t().projects.empty }}</p>
+      }
+    </div>
+  }
+</app-man-section>

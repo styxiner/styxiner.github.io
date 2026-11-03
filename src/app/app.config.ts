@@ -1,13 +1,8 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
-import { routes } from './app.routes';
-
+// No router: the site is a single page navigated with #anchors, which also means
+// GitHub Pages never has to resolve a client-side route (no 404 workaround needed).
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
-    provideHttpClient(withFetch()),
-  ]
+  providers: [provideBrowserGlobalErrorListeners(), provideHttpClient(withFetch())],
 };

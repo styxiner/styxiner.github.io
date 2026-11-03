@@ -1,0 +1,22 @@
+<app-man-section sectionId="about" [label]="t().about.label" command="whoami">
+  <h2 class="section-title" id="about-title">{{ t().about.title }}</h2>
+
+  <div class="grid">
+    <div class="prose">
+      @for (paragraph of t().about.paragraphs; track $index) {
+        <p>
+          <strong>{{ paragraph.title }}</strong> {{ paragraph.text }}
+        </p>
+      }
+    </div>
+
+    <dl class="facts">
+      @for (fact of t().about.facts; track $index) {
+        <div>
+          <dt>{{ fact.key }}</dt>
+          <dd>{{ fact.value }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+</app-man-section>

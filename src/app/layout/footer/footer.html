@@ -1,0 +1,23 @@
+<footer class="wrap footer">
+  <p class="prompt">
+    <span class="user">styxiner@localhost</span>:~$ cat /var/log/status.log<span
+      class="cursor"
+      aria-hidden="true"
+    ></span>
+  </p>
+
+  <div class="row">
+    <p>styxiner · &copy; {{ year }}</p>
+    <ul class="links">
+      @for (link of social; track link.id) {
+        <li>
+          <a [href]="link.url" rel="me noopener" target="_blank">{{ link.id }}</a>
+        </li>
+      }
+    </ul>
+    <p>
+      {{ t().footer.servedFrom }}
+      <a href="https://pages.github.com/" rel="noopener" target="_blank">GitHub Pages</a> · exit 0
+    </p>
+  </div>
+</footer>

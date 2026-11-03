@@ -1,0 +1,79 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <p class="man-header" aria-hidden="true">
+      <span>STYXINER(1)</span>
+      <span class="center">{{ t().hero.manual }}</span>
+      <span class="end">STYXINER(1)</span>
+    </p>
+
+    <div class="grid">
+      <div>
+        <h1 class="name" id="hero-title">
+          {{ site.name }}<span class="cursor" aria-hidden="true"></span>
+        </h1>
+        <p class="role">{{ t().hero.role }}</p>
+        <p class="intro">{{ t().hero.intro }}</p>
+
+        <dl class="synopsis">
+          <dt>{{ t().hero.synopsisLabel }}</dt>
+          <dd>
+            <b>{{ site.name }}</b>
+            @for (flag of site.synopsisFlags; track flag) {
+              <span class="token"
+                >[<b>--{{ flag }}</b
+                >]</span
+              >
+            }
+            <u>{{ t().hero.synopsisArgument }}</u>
+          </dd>
+          <dt>{{ t().hero.philosophyLabel }}</dt>
+          <dd>{{ t().hero.philosophy }}</dd>
+        </dl>
+
+        <div class="actions">
+          <a class="button" href="#projects">{{ t().hero.cta }}</a>
+          <div class="socials">
+            @for (link of site.social; track link.id) {
+              <a class="social" [href]="link.url" rel="me noopener" target="_blank">
+                <app-icon [name]="link.id" />
+                <span>{{ link.id }}</span>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <aside class="readout" [attr.aria-label]="t().hero.activity">
+        <p class="readout-head">
+          $ git log -1 <b>--author={{ site.name }}</b>
+        </p>
+        @if (activity(); as activity) {
+          <dl>
+            <dt>repo</dt>
+            <dd>{{ activity.lastPushRepo }}</dd>
+            <dt>date</dt>
+            <dd>{{ activity.lastPushAt | slice: 0 : 10 }}</dd>
+            <dt>public repos</dt>
+            <dd>{{ activity.publicRepos }}</dd>
+            <dt>since</dt>
+            <dd>{{ activity.memberSince | slice: 0 : 7 }}</dd>
+          </dl>
+          <div class="lang-bar" aria-hidden="true">
+            @for (language of languages(); track language.name) {
+              <span [style.background]="language.color" [style.flex-grow]="language.count"></span>
+            }
+          </div>
+          <p class="lang-legend">
+            @for (language of languages(); track language.name) {
+              <span [style.--c]="language.color"
+                >{{ language.name.toLowerCase() }} {{ language.count }}</span
+              >
+            }
+          </p>
+        } @else {
+          <p class="readout-empty">{{ t().hero.loadingActivity }}</p>
+        }
+      </aside>
+    </div>
+  </div>
+</section>

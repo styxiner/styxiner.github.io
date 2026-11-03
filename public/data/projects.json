@@ -1,0 +1,157 @@
+{
+  "generatedAt": "2026-11-03T18:58:47.357Z",
+  "user": "styxiner",
+  "activity": {
+    "lastPushRepo": "complyx-server",
+    "lastPushAt": "2026-11-02T23:26:27Z",
+    "publicRepos": 13,
+    "memberSince": "2024-02-19T22:50:14Z",
+    "languages": [
+      {
+        "name": "Python",
+        "count": 4
+      },
+      {
+        "name": "Rust",
+        "count": 2
+      },
+      {
+        "name": "TypeScript",
+        "count": 2
+      },
+      {
+        "name": "Java",
+        "count": 1
+      }
+    ]
+  },
+  "projects": [
+    {
+      "slug": "complyx",
+      "title": "Complyx",
+      "description": {
+        "es": "Un agente comprueba y aplica políticas de seguridad; un servidor gestiona los agentes y sus políticas. Interfaz en Angular y PWA con Electron.",
+        "en": "An agent checks and enforces security policies; a server manages the agents and their policies. Angular interface and PWA with Electron."
+      },
+      "imageUrl": null,
+      "repoUrl": "https://github.com/styxiner/complyx",
+      "liveUrl": null,
+      "language": "Rust",
+      "topics": [],
+      "featured": true,
+      "archived": false,
+      "updatedAt": "2026-11-02T23:26:27Z",
+      "repos": [
+        {
+          "name": "complyx-agent",
+          "repoUrl": "https://github.com/styxiner/complyx-agent",
+          "language": "Rust",
+          "description": "This repository contains the code for the complyx agent that checks and enforces the security policies"
+        },
+        {
+          "name": "complyx-server",
+          "repoUrl": "https://github.com/styxiner/complyx-server",
+          "language": "Rust",
+          "description": "This repository contains the code for the complyx server that manages the agents and its policies"
+        },
+        {
+          "name": "complyx-api",
+          "repoUrl": "https://github.com/styxiner/complyx-api",
+          "language": "Java",
+          "description": null
+        },
+        {
+          "name": "complyx-ui",
+          "repoUrl": "https://github.com/styxiner/complyx-ui",
+          "language": "TypeScript",
+          "description": "This repository contains the angular user interface and Progressive Web Application with electron"
+        },
+        {
+          "name": "complyx",
+          "repoUrl": "https://github.com/styxiner/complyx",
+          "language": null,
+          "description": "This repository contains the tipical deployments of the app"
+        }
+      ]
+    },
+    {
+      "slug": "eskufest",
+      "title": "eskufest",
+      "description": "Web eskufest",
+      "imageUrl": null,
+      "repoUrl": "https://github.com/styxiner/eskufest",
+      "liveUrl": null,
+      "language": "TypeScript",
+      "topics": [],
+      "featured": false,
+      "archived": false,
+      "updatedAt": "2026-10-03T07:45:25Z",
+      "repos": []
+    },
+    {
+      "slug": "odoo_hardware_manager",
+      "title": "Odoo Hardware Manager",
+      "description": {
+        "es": "Proyecto de clase para crear un plugin para el ERP/CRM Odoo. Ahora está archivado.",
+        "en": "This was a class project to create a plugin for Odoo ERP/CRM. Now it is archived."
+      },
+      "imageUrl": null,
+      "repoUrl": "https://github.com/styxiner/odoo_hardware_manager",
+      "liveUrl": null,
+      "language": "Python",
+      "topics": [],
+      "featured": false,
+      "archived": true,
+      "updatedAt": "2026-05-24T20:59:38Z",
+      "repos": []
+    },
+    {
+      "slug": "Crypthon",
+      "title": "Crypthon",
+      "description": null,
+      "imageUrl": null,
+      "repoUrl": "https://github.com/styxiner/Crypthon",
+      "liveUrl": null,
+      "language": "Python",
+      "topics": [],
+      "featured": false,
+      "archived": false,
+      "updatedAt": "2025-06-15T16:38:49Z",
+      "repos": []
+    },
+    {
+      "slug": "ShellText",
+      "title": "ShellText",
+      "description": {
+        "es": "ShellText es un editor de texto simple para terminal con una interfaz de usuario basada en texto (TUI). Diseñado con Textual, ofrece un entorno intuitivo que incluye un encabezado, un menú lateral y un área de edición, ideal para usuarios que buscan una experiencia de escritura fluida en la consola. Perfecto para notas rápidas y edición ligera.",
+        "en": "ShellText is a simple terminal text editor with a text-based user interface (TUI). Built with Textual, it offers an intuitive layout with a header, a side menu and an editing area, for anyone who wants smooth writing in the console. Ideal for quick notes and light editing."
+      },
+      "imageUrl": null,
+      "repoUrl": "https://github.com/styxiner/ShellText",
+      "liveUrl": null,
+      "language": "Python",
+      "topics": [],
+      "featured": false,
+      "archived": false,
+      "updatedAt": "2024-09-29T19:53:24Z",
+      "repos": []
+    },
+    {
+      "slug": "EchoBot",
+      "title": "EchoBot",
+      "description": {
+        "es": "Echobot es un programa asistente que utiliza el reconocimiento de voz y la conversión de texto a voz para interactuar con el usuario. Realiza varias tareas basándose en las órdenes del usuario.",
+        "en": "EchoBot is an assistant that uses speech recognition and text-to-speech to interact with the user. It performs several tasks based on the user's commands."
+      },
+      "imageUrl": null,
+      "repoUrl": "https://github.com/styxiner/EchoBot",
+      "liveUrl": null,
+      "language": "Python",
+      "topics": [],
+      "featured": false,
+      "archived": false,
+      "updatedAt": "2024-03-13T11:11:17Z",
+      "repos": []
+    }
+  ]
+}

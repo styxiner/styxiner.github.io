@@ -1,0 +1,31 @@
+<app-man-section sectionId="contact" [label]="t().contact.label" command="finger styxiner">
+  <h2 class="title" id="contact-title">{{ t().contact.title }}<span aria-hidden="true">_</span></h2>
+  <p class="lede">{{ t().contact.lede }}</p>
+
+  <ul class="list">
+    @for (link of social; track link.id) {
+      <li>
+        <a class="row" [href]="link.url" rel="me noopener" target="_blank">
+          <app-icon class="icon" [name]="link.id" />
+          <span>
+            <strong>{{ link.label }}</strong>
+            <small>{{ link.handle }}</small>
+          </span>
+          <span class="go">{{ t().contact.open }} <app-icon name="arrow-up-right" /></span>
+        </a>
+      </li>
+    }
+    @if (email) {
+      <li>
+        <a class="row" [href]="'mailto:' + email">
+          <app-icon class="icon" name="mail" />
+          <span>
+            <strong>{{ t().contact.email }}</strong>
+            <small>{{ email }}</small>
+          </span>
+          <span class="go">{{ t().contact.write }} <app-icon name="arrow-up-right" /></span>
+        </a>
+      </li>
+    }
+  </ul>
+</app-man-section>

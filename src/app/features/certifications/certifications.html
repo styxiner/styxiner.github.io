@@ -1,0 +1,71 @@
+<app-man-section sectionId="certs" [label]="t().certs.label" command="ls /etc/ssl/certs">
+  <h2 class="section-title" id="certs-title">{{ t().certs.title }}</h2>
+
+  <div class="list" [class.single]="certifications.length === 1">
+    @for (cert of certifications; track cert.name) {
+      <article class="cert">
+        @if (cert.badgeUrl) {
+          <img
+            class="badge"
+            [src]="cert.badgeUrl"
+            [alt]="t().certs.badge + ' ' + cert.name"
+            width="96"
+            height="96"
+            loading="lazy"
+          />
+        } @else {
+          <div class="badge empty" aria-hidden="true">
+            <b>{{ cert.name }}</b
+            >{{ t().certs.noBadge }}
+          </div>
+        }
+
+        <div class="info">
+          @if (cert.status === 'completed') {
+            <app-status-tag>{{ t().certs.completed }}</app-status-tag>
+          } @else {
+            <app-status-tag code="WAIT" tone="warn">{{ t().certs.inProgress }}</app-status-tag>
+          }
+          <h3>{{ cert.name }}</h3>
+          <p class="desc">{{ t().certs.descriptions[cert.id] }}</p>
+
+          <dl>
+            <div>
+              <dt>{{ t().certs.issuer }}</dt>
+              <dd>
+                @if (cert.issuer) {
+                  {{ cert.issuer }}
+                } @else {
+                  <span class="draft">{{ t().certs.pending }}</span>
+                }
+              </dd>
+            </div>
+            <div>
+              <dt>{{ t().certs.earnedOn }}</dt>
+              <dd>{{ cert.status === 'completed' && cert.earnedOn ? cert.earnedOn : '—' }}</dd>
+            </div>
+            <div>
+              <dt>{{ t().certs.verification }}</dt>
+              <dd>
+                @if (cert.status === 'completed' && cert.verifyUrl) {
+                  <a [href]="cert.verifyUrl" rel="noopener" target="_blank"
+                    >{{ t().certs.verify }} ↗</a
+                  >
+                } @else {
+                  —
+                }
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+    }
+
+    @if (certifications.length === 1) {
+      <div class="slot" aria-hidden="true">
+        <span>{{ t().certs.next }}</span>
+        <span>certifications.config.ts</span>
+      </div>
+    }
+  </div>
+</app-man-section>

@@ -1,0 +1,23 @@
+<app-man-section sectionId="stack" [label]="t().skills.label" command="cat package.json">
+  <h2 class="section-title" id="stack-title">{{ t().skills.title }}</h2>
+
+  <div class="list">
+    @for (group of groups; track group.flag) {
+      <div class="row">
+        <h3>
+          <span aria-hidden="true">--{{ group.flag }}</span
+          ><span class="visually-hidden">{{ t().skills.groups[group.flag] }}</span>
+        </h3>
+        <ul class="chips">
+          @for (skill of group.skills; track skill.name) {
+            <li class="chip">
+              <i [style.background]="skill.color" aria-hidden="true"></i>{{ skill.name }}
+            </li>
+          } @empty {
+            <li class="chip empty">{{ t().skills.empty }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</app-man-section>

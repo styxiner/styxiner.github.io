@@ -1,0 +1,60 @@
+name: Deploy
+
+# Builds the Angular app and publishes it to GitHub Pages.
+# Runs on every push to main, by hand, and from update-projects.yml after it commits
+# new data (pushes made with GITHUB_TOKEN do not trigger other workflows on their own).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Always build main: when called from update-projects, the triggering commit is
+      # older than the data commit that workflow just pushed.
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm check:scripts
+
+      - run: pnpm test --watch=false
+
+      - run: pnpm build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist/styxiner.github.io/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,103 @@
+@use 'breakpoints' as bp;
+
+.list {
+  display: grid;
+  gap: var(--space-4);
+
+  @include bp.up(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    &.single {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    }
+  }
+}
+
+.cert {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+
+  @include bp.up(sm) {
+    grid-template-columns: 6rem minmax(0, 1fr);
+  }
+}
+
+.badge {
+  width: 6rem;
+  height: 6rem;
+  object-fit: contain;
+
+  &.empty {
+    display: grid;
+    place-content: center;
+    border: 1px dashed var(--line-strong);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    line-height: 1.4;
+    text-align: center;
+    color: var(--text-faint);
+
+    b {
+      display: block;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+  }
+}
+
+.info {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+h3 {
+  font-size: var(--step-2);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.desc {
+  color: var(--text-muted);
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--text-faint);
+}
+
+dd {
+  margin: 0;
+  font-size: 0.9375rem;
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.slot {
+  display: grid;
+  place-content: center;
+  gap: var(--space-1);
+  min-height: 10rem;
+  padding: var(--space-5);
+  border: 1px dashed var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--text-faint);
+}

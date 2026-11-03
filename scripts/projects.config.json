@@ -1,0 +1,41 @@
+{
+  "user": "styxiner",
+  "includeForks": false,
+  "exclude": ["styxiner", "styxiner.github.io"],
+  "order": ["complyx"],
+  "groups": [
+    {
+      "slug": "complyx",
+      "title": "Complyx",
+      "repos": ["complyx-agent", "complyx-server", "complyx-api", "complyx-ui", "complyx"],
+      "primary": "complyx-server",
+      "repoUrl": "https://github.com/styxiner/complyx",
+      "description": {
+        "es": "Un agente comprueba y aplica políticas de seguridad; un servidor gestiona los agentes y sus políticas. Interfaz en Angular y PWA con Electron.",
+        "en": "An agent checks and enforces security policies; a server manages the agents and their policies. Angular interface and PWA with Electron."
+      }
+    }
+  ],
+  "overrides": {
+    "complyx": { "featured": true },
+    "odoo_hardware_manager": {
+      "title": "Odoo Hardware Manager",
+      "description": {
+        "es": "Proyecto de clase para crear un plugin para el ERP/CRM Odoo. Ahora está archivado.",
+        "en": "This was a class project to create a plugin for Odoo ERP/CRM. Now it is archived."
+      }
+    },
+    "ShellText": {
+      "description": {
+        "es": "ShellText es un editor de texto simple para terminal con una interfaz de usuario basada en texto (TUI). Diseñado con Textual, ofrece un entorno intuitivo que incluye un encabezado, un menú lateral y un área de edición, ideal para usuarios que buscan una experiencia de escritura fluida en la consola. Perfecto para notas rápidas y edición ligera.",
+        "en": "ShellText is a simple terminal text editor with a text-based user interface (TUI). Built with Textual, it offers an intuitive layout with a header, a side menu and an editing area, for anyone who wants smooth writing in the console. Ideal for quick notes and light editing."
+      }
+    },
+    "EchoBot": {
+      "description": {
+        "es": "Echobot es un programa asistente que utiliza el reconocimiento de voz y la conversión de texto a voz para interactuar con el usuario. Realiza varias tareas basándose en las órdenes del usuario.",
+        "en": "EchoBot is an assistant that uses speech recognition and text-to-speech to interact with the user. It performs several tasks based on the user's commands."
+      }
+    }
+  }
+}
