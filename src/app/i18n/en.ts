@@ -124,7 +124,4 @@ export const en: Translations = {
     email: 'Email',
   },
 
-  footer: {
-    servedFrom: 'served from',
-  },
 };

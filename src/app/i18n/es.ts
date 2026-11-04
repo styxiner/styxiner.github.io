@@ -127,9 +127,6 @@ export const es = {
     email: 'Correo',
   },
 
-  footer: {
-    servedFrom: 'servido desde',
-  },
 };
 
 export type Translations = typeof es;
